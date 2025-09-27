@@ -1,5 +1,10 @@
-FROM quay.io/lyfe00011/md:beta
-RUN git clone https://github.com/lyfe00011/levanter.git /root/LyFE/
-WORKDIR /root/LyFE/
-RUN yarn install
+FROM node:20
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install --legacy-peer-deps
+
+COPY . .
+
 CMD ["npm", "start"]
